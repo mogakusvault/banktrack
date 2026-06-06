@@ -1,7 +1,7 @@
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '10mb',
+      sizeLimit: '20mb',
     },
   },
 }
@@ -10,6 +10,12 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
 
   try {
+    const body = req.body
+
+    if (!body || !body.messages) {
+      return res.status(400).json({ error: 'Body invalido' })
+    }
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -20,14 +26,19 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
-        system: req.body.system,
-        messages: req.body.messages,
+        system: body.system,
+        messages: body.messages,
       }),
     })
 
-    const text = await response.text()
-    res.status(200).send(text)
+    if (!response.ok) {
+      const err = await response.text()
+      return res.status(500).json({ error: err })
+    }
+
+    const data = await response.json()
+    return res.status(200).json(data)
   } catch (e) {
-    res.status(500).json({ error: e.message })
+    return res.status(500).json({ error: e.message })
   }
 }
