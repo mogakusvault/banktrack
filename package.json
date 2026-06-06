@@ -1,0 +1,21 @@
+{
+  "name": "banktrack",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.101.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.2.0",
+    "vite-plugin-pwa": "^0.19.8"
+  }
+}
