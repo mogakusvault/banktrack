@@ -291,7 +291,7 @@ function AddScreen({ onDone, onToast }) {
     setPreview(URL.createObjectURL(file))
     try {
       const b64 = await fileToB64(file)
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
