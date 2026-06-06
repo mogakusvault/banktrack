@@ -7,11 +7,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icon-192.png', 'icon-512.png'],
+      includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'BankTrack – Movimientos bancarios',
+        name: 'BankTrack – Fondo de Promoción FAA',
         short_name: 'BankTrack',
-        description: 'Registra movimientos bancarios con IA desde comprobantes y capturas',
+        description: 'Registro de aportes al fondo de promoción',
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
@@ -19,35 +19,7 @@ export default defineConfig({
         scope: '/',
         start_url: '/',
         icons: [
-          {
-            src: 'icon-192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'icon-512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          },
-          {
-            src: 'icon-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable'
-          }
-        ]
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }
-            }
-          }
+          { src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml' }
         ]
       }
     })
